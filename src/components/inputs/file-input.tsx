@@ -64,7 +64,7 @@ export function FileInput({ file, setFile }: FileInputProps) {
   }
 
   return (
-    <div className='bg-input/30 hover:border-primary hover:bg-input/50 aspect-video max-h-60 w-full rounded-2xl border-2 transition-all duration-300'>
+    <div className='border-input bg-input/30 hover:border-primary hover:bg-input/50 aspect-video max-h-60 w-full rounded-2xl border-2 transition-all duration-300'>
       {!file && (
         <label className='group flex h-full w-full cursor-pointer items-center justify-center'>
           <input
@@ -73,7 +73,7 @@ export function FileInput({ file, setFile }: FileInputProps) {
             onChange={handleUpload}
             className='hidden'
           />
-          <div className='flex flex-col items-center'>
+          <div className='text-muted-foreground flex flex-col items-center'>
             <FilePlusIcon className='h-12 w-12' />
             <Large className='mt-2 text-base'>Click here to add a file</Large>
             <Small className='mt-1 text-sm'>

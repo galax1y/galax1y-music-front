@@ -8,7 +8,7 @@ export function Container({ className, children, ...props }: ContainerProps) {
   return (
     <div
       className={cn(
-        'container mx-auto flex min-h-[calc(100vh-4rem)] flex-col',
+        'container mx-auto flex min-h-[calc(100vh-3.5rem)] flex-col',
         className,
       )}
       {...props}

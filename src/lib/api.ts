@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: import.meta.env.API_URL,
+  baseURL: 'http://localhost:8080',
 })
 
 export { client }

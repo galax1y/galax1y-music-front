@@ -7,7 +7,7 @@ import { GitHubLogoIcon } from '@radix-ui/react-icons'
 export function Header() {
   return (
     <header className='flex items-center justify-between px-6 pt-6'>
-      <H1 className='bg-gradient-to-r from-cyan-500 to-pink-500 bg-clip-text leading-snug text-transparent'>
+      <H1 className='bg-gradient-to-r from-cyan-500 via-rose-500 to-pink-500 bg-clip-text leading-snug text-transparent'>
         galax1y-music
       </H1>
 

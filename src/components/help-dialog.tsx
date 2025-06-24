@@ -27,8 +27,6 @@ export function HelpDialog() {
               <li>
                 <strong>Raw text: </strong>
                 You can directly type the music structure you want to generate.
-                Optionally, click the buttons to insert the text corresponding
-                to the notes / instruments / tempos.
               </li>
               <li>
                 <strong>File: </strong>
