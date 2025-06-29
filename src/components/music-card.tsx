@@ -5,10 +5,9 @@ import { client } from '@/lib/api'
 import { useStore } from '@/lib/store'
 
 import {
-  DotsVerticalIcon,
-  DownloadIcon,
-  PlayIcon,
   TrashIcon,
+  DownloadIcon,
+  DotsVerticalIcon,
 } from '@radix-ui/react-icons'
 
 import { Button } from './ui/button'
@@ -37,6 +36,50 @@ export function MusicCard(music: MusicDto) {
     return toast.info('Music deleted successfully.')
   }
 
+  const handleMidiDownload = async () => {
+    try {
+      client
+        .get(`/music/${music.id}/download?format=MIDI`, {
+          responseType: 'blob',
+        })
+        .then((response) => {
+          const href = URL.createObjectURL(response.data)
+
+          const link = document.createElement('a')
+          link.href = href
+          link.setAttribute('download', `${music.title}.mid`)
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+          URL.revokeObjectURL(href)
+        })
+    } catch (error) {
+      return toast.error('Failed to download MIDI file.')
+    }
+  }
+
+  const handleWavDownload = async () => {
+    try {
+      client
+        .get(`/music/${music.id}/download?format=WAV`, {
+          responseType: 'blob',
+        })
+        .then((response) => {
+          const href = URL.createObjectURL(response.data)
+
+          const link = document.createElement('a')
+          link.href = href
+          link.setAttribute('download', `${music.title}.wav`)
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+          URL.revokeObjectURL(href)
+        })
+    } catch (error) {
+      return toast.error('Failed to downloda WAV file.')
+    }
+  }
+
   return (
     <Card
       className='hover:bg-accent cursor-pointer flex-row items-center py-4 transition-all duration-200 hover:brightness-125'
@@ -57,11 +100,17 @@ export function MusicCard(music: MusicDto) {
           <DropdownMenuContent className='rounded-xl' align='end'>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className='flex justify-between rounded-md'>
-              Download as MP3
+            <DropdownMenuItem
+              onClick={handleWavDownload}
+              className='flex justify-between rounded-md'
+            >
+              Download as WAV
               <DownloadIcon />
             </DropdownMenuItem>
-            <DropdownMenuItem className='flex justify-between rounded-md'>
+            <DropdownMenuItem
+              onClick={handleMidiDownload}
+              className='flex justify-between rounded-md'
+            >
               Download as MIDI
               <DownloadIcon />
             </DropdownMenuItem>
